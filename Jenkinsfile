@@ -2,7 +2,7 @@ pipeline
 {
 
 agent {
-  label 'Built-In Node'
+  label 'master'
 }
 
 parameters {
@@ -38,7 +38,8 @@ stages{
         parallel {
             stage('testA')
             {
-                agent { label 'Built-In Node' }
+  label 'any'
+                agent { label 'master' }
                 steps{
                     echo " This is test A"
                     sh "mvn test"
@@ -47,7 +48,7 @@ stages{
             }
             stage('testB')
             {
-                agent { label 'Built-In Node' }
+                agent { label 'master' }
                 steps{
                 echo "this is test B"
                 sh "mvn test"
@@ -65,11 +66,11 @@ stages{
 
     }
 
-    stage('deploy_dev')
+    stage('deploy_green')
     {
         when { expression {params.select_environment == 'green'}
         beforeAgent true}
-        agent { label 'Built-In Node' }
+        agent { label 'master' }
         steps
         {
             dir("/var/www/html")
@@ -83,11 +84,11 @@ stages{
         }
     }
 
-    stage('deploy_prod')
+    stage('deploy_blue')
     {
-      when { expression {params.select_environment == 'prod'}
+      when { expression {params.select_environment == 'blue'}
         beforeAgent true}
-        agent { label 'Built-In Node' }
+        agent { label 'master' }
         steps
         {
              timeout(time:5, unit:'DAYS'){
