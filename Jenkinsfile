@@ -2,18 +2,18 @@ pipeline
 {
 
 agent {
-  label 'DevServer'
+  label 'Built-In Node'
 }
 
 parameters {
-    choice choices: ['dev', 'prod'], name: 'select_environment'
+    choice choices: ['blue', 'green'], name: 'select_environment'
 }
 
 environment{
-    NAME = "piyush"
+    NAME = "abhishek"
 }
 tools {
-  maven 'mymaven'
+  maven 'maven1'
 }
 
 stages{
@@ -38,7 +38,7 @@ stages{
         parallel {
             stage('testA')
             {
-                agent { label 'DevServer' }
+                agent { label 'Built-In Node' }
                 steps{
                     echo " This is test A"
                     sh "mvn test"
@@ -47,7 +47,7 @@ stages{
             }
             stage('testB')
             {
-                agent { label 'DevServer' }
+                agent { label 'Built-In Node' }
                 steps{
                 echo "this is test B"
                 sh "mvn test"
@@ -67,9 +67,9 @@ stages{
 
     stage('deploy_dev')
     {
-        when { expression {params.select_environment == 'dev'}
+        when { expression {params.select_environment == 'green'}
         beforeAgent true}
-        agent { label 'DevServer' }
+        agent { label 'Built-In Node' }
         steps
         {
             dir("/var/www/html")
@@ -87,7 +87,7 @@ stages{
     {
       when { expression {params.select_environment == 'prod'}
         beforeAgent true}
-        agent { label 'ProdServer' }
+        agent { label 'Built-In Node' }
         steps
         {
              timeout(time:5, unit:'DAYS'){
