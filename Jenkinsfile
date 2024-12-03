@@ -38,7 +38,6 @@ stages{
         parallel {
             stage('testA')
             {
-  label 'any'
                 agent { label 'master' }
                 steps{
                     echo " This is test A"
