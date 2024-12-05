@@ -31,6 +31,20 @@
 
   <build>
     <plugins>
+         <!-- Surefire Plugin to run tests and generate reports -->
+        <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.22.2</version> <!-- or the version you're using -->
+            <configuration>
+                <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+            </configuration>
+        </plugin>
+
+        <!-- Maven Surefire Report Plugin -->
+        <plugin>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>2.11</version> <!-- Match the version of surefire plugin -->
+        </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
