@@ -56,7 +56,8 @@ stages{
              dir("webapp/target/")
             {
             stash name: "maven-build", includes: "*.war"
-                 }
+             }
+             junit '**/target/*.xml' 
                  }
             }
 
