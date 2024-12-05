@@ -23,6 +23,16 @@ options {
 
 stages{
 
+   stage('Clean Workspace') {
+            steps {
+                script {
+                    // Clean workspace at the beginning of the job
+                    deleteDir()
+                    echo "Workspace cleaned at the start of the job!"
+                }
+            }
+        }
+
     stage('build')
     {
         steps {
