@@ -62,7 +62,8 @@ stages{
             {
             stash name: "maven-build", includes: "*.war"
              }
-             junit '**/target/*.xml' 
+             junit '**/target/surefire-reports/*.xml'
+
                  }
             }
 
