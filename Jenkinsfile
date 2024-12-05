@@ -35,7 +35,7 @@ stages{
         parallel {
             stage('testA')
             {
-                agent { label 'slave1' }
+                agent { label 'master' }
                 steps{
                     echo " This is test A"
                     sh "mvn test"
@@ -44,7 +44,7 @@ stages{
             }
             stage('testB')
             {
-                agent { label 'slave1' }
+                agent { label 'master' }
                 steps{
                 echo "this is test B"
                 sh "mvn test"
@@ -66,7 +66,7 @@ stages{
     {
         when { expression {params.select_environment == 'green'}
         beforeAgent true}
-        agent { label 'slave1' }
+        agent { label 'master' }
         steps
         {
             dir("/var/www/html")
