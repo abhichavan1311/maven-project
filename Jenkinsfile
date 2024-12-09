@@ -31,6 +31,10 @@ stages{
            
         }
 
+      steps {
+                echo "Hi ${NAME}"
+            }
+
         
 
     }
