@@ -28,14 +28,9 @@ stages{
         steps {
             
             sh 'mvn clean package -DskipTests=true'
+            echo "Hi ${NAME}"
            
         }
-
-      steps {
-                echo "Hi ${NAME}"
-            }
-
-        
 
     }
 
